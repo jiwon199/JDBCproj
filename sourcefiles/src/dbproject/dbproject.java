@@ -33,11 +33,12 @@ public class dbproject {
 			 */
 			
 			myConn = DriverManager.getConnection(url, userID, userPW);
+                        System.out.println("접속 시작...");
 			System.out.println("... Connected to databse " + dbName + " in MySQL with " + myConn.toString() + " ...");
 			
 			myState = myConn.createStatement();
 			 
-			 
+			
 			while(true){
 				System.out.println("1.show all. 2.insert 3.delete 4.update 5.search 6.finish");
 				int num; //user input.
