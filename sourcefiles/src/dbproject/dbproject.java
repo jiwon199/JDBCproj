@@ -24,7 +24,7 @@ public class dbproject {
 
 		try {
 			
-			/*
+			/* ì´ì œ ì“°ì´ì§€ ì•ŠëŠ” í˜•ì‹ 
 			 * Class.forName("com.mysql.jdbc.Driver");
 			 * This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'.
 			 * The driver is automatically registered via the SPI and manual loading of the driver class 
@@ -110,13 +110,13 @@ public class dbproject {
 								ResultSet rs=check.executeQuery();
 								while(rs.next()) {
 									String group=rs.getString("belongGroup");
-									if(group.substring(0,1).equals("¢¾")) checknum=0;
+									if(group.substring(0,1).equals("Â¢Â¾")) checknum=0;
 									
 								}
 								//use prepareStatement, insert info into database
 								PreparedStatement psmt=myConn.prepareStatement("insert into Song values(?,?,?)");
 								if(checknum==1) psmt.setString(1, songTitle);
-								else psmt.setString(1, "¢¾"+songTitle);
+								else psmt.setString(1, "Â¢Â¾"+songTitle);
 							 
 								psmt.setFloat(2, songLength);
 								psmt.setString(3, albumTitle);
@@ -181,7 +181,7 @@ public class dbproject {
 									//myState.executeUpdate("update Song set SongTitle = '"+newSongtitle+"' where songTitle = '"+songTitle+"'");
 									PreparedStatement psmt=myConn.prepareStatement("update Song set SongTitle = ? where songTitle = ?");
 									//If it's a song by a group that has been marked, put a heart on the new title.
-									if(songTitle.substring(0,1).equals("¢¾")) psmt.setString(1, "¢¾"+newSongtitle);
+									if(songTitle.substring(0,1).equals("Â¢Â¾")) psmt.setString(1, "Â¢Â¾"+newSongtitle);
 									else psmt.setString(1, newSongtitle);
 									 
 									psmt.setString(2, songTitle);
@@ -198,7 +198,7 @@ public class dbproject {
 				 
 				// put a heart on the name of my favorite group and the song made by the group member.
 				 //Other menus receive user input through numbers, so adding hearts does not interfere with search and update
-				System.out.println("you can mark ¢¾ on your favorite group and the song of your favorite group");
+				System.out.println("you can mark Â¢Â¾ on your favorite group and the song of your favorite group");
 				System.out.println("which is your favorite group? enter the number");
 				myResSet=myState.executeQuery("select belongGroup from Artist");
 				int indexnum=1;
@@ -220,7 +220,7 @@ public class dbproject {
 							//do my work in here!
 							 
 							//If the first letter of the group starts with a heart, it's already marked. break.
-							if(group.substring(0,1).equals("¢¾")) {
+							if(group.substring(0,1).equals("Â¢Â¾")) {
 								 
 								break;
 							}
@@ -233,13 +233,13 @@ public class dbproject {
 								 
 									String song=rs.getString("songTitle");
 									PreparedStatement psmt=myConn.prepareStatement("update Song set songTitle= ? where songTitle= ?");
-									psmt.setString(1,"¢¾"+song);
+									psmt.setString(1,"Â¢Â¾"+song);
 									psmt.setString(2,song);
 									psmt.executeUpdate();
 								}
 								//Attach heart in group name
 								PreparedStatement psmt2=myConn.prepareStatement("update Artist set belongGroup = ? where belongGroup=?");
-								psmt2.setString(1, "¢¾"+group);
+								psmt2.setString(1, "Â¢Â¾"+group);
 								psmt2.setString(2, group);
 								psmt2.executeUpdate();
 								
